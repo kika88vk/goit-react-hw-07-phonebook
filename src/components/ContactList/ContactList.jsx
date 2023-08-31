@@ -1,9 +1,10 @@
 import { ContactListItem } from './ContactListItem/ContactListItem';
 import { useSelector } from 'react-redux';
+import { selectContacts, selectFilterList } from 'redux/selectors';
 
 export const ContactList = () => {
-  const contacts = useSelector(state => state.contacts.contacts);
-  const filterList = useSelector(state => state.filter.filter);
+  const contacts = useSelector(selectContacts);
+  const filterList = useSelector(selectFilterList);
 
   const getFilteredContacts = () => {
     let normalizedFilter = filterList.toLowerCase();
