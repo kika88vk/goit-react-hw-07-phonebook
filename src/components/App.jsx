@@ -5,12 +5,13 @@ import css from './App.module.css';
 import { fetchContacts } from 'redux/operations';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectError, selectIsLoading } from 'redux/selectors';
+import { selectError, selectIsLoading, selectContacts } from 'redux/selectors';
 
 const App = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
+  const contacts = useSelector(selectContacts);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -18,14 +19,18 @@ const App = () => {
 
   return (
     <div className={css.container}>
-      <h1 className={css.heading}>Phonebook</h1>
+      <div className={css.phonebook}>
+        <h1 className={css.heading}>Phonebook</h1>
 
-      <ContactForm />
+        <ContactForm />
 
-      <h2 className={css.heading}>Contacts</h2>
-      <Filter />
-      {isLoading && !error && <b>Request in progress...</b>}
-      <ContactList />
+        <h2 className={css.heading}>Contacts</h2>
+        <div className={css.filterContainer}>
+          <Filter />
+          {isLoading && !error && <b>Request in progress...</b>}
+          {contacts && <ContactList />}
+        </div>
+      </div>
     </div>
   );
 };

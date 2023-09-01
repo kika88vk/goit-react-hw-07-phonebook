@@ -3,8 +3,9 @@ import css from './ContactForm.module.css';
 import { useState } from 'react';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { useDispatch } from 'react-redux';
-import { formAddContact } from 'redux/contactsSlice';
+// import { formAddContact } from 'redux/contactsSlice';
 import { selectContacts } from 'redux/selectors';
+import { fetchAddContact } from 'redux/operations';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
@@ -39,11 +40,15 @@ const ContactForm = () => {
     );
 
     if (existingContact) {
-      alert(`Contact with this name is already exists.`);
+      alert(
+        `Contact with this name "${existingContact.name}" is already exists.`
+      );
       return;
     }
 
-    dispatch(formAddContact({ name, number }));
+    const contact = { name, phone: number };
+
+    dispatch(fetchAddContact(contact));
 
     reset();
   };

@@ -19,9 +19,14 @@ export const selectError = state => state.contacts.error;
 export const selectFilteredContacts = createSelector(
     [selectFilterList, selectContacts],
     (filterList, contacts) => {
-        return contacts.filter(contact => {
-            console.log('EXPENSIVE COMPUTATIONS!');
-            return contact.name.toLowerCase().includes(filterList.toLowerCase());
-        });
+        return contacts.filter(contact => contact.name.toLowerCase().includes(filterList.toLowerCase()));
     }
 );
+
+// export const selectFilteredContacts = state => {
+//     const contacts = selectContacts(state);
+//     const filterList = selectFilterList(state);
+
+//     return contacts.filter(contact => contact.name.toLowerCase().includes(filterList.toLowerCase()))
+
+// }

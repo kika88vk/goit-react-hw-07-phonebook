@@ -2,12 +2,14 @@
   font-size: 25px;
   color: var(--primary-text-color);
   font-weight: 500;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .contact_item {
-  margin-left: 20px;
+  margin-left: 0;
 }
 
 .btn {
