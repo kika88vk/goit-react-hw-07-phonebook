@@ -3,13 +3,13 @@ import css from './ContactListItem.module.css';
 import { useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/contactsSlice';
 
-export const ContactListItem = ({ id, name, number }) => {
+export const ContactListItem = ({ id, name, phone }) => {
   const dispatch = useDispatch();
 
   return (
     <li id={id} className={css.contact_item}>
       <p className={css.contact}>
-        {name}: <span>{number}</span>
+        {name}: <span>{phone}</span>
         <button
           className={css.btn}
           type="button"
@@ -24,6 +24,6 @@ export const ContactListItem = ({ id, name, number }) => {
 
 ContactListItem.propTypes = {
   id: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  number: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  phone: PropTypes.string,
 };

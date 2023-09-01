@@ -27,19 +27,30 @@ const contactsSlice = createSlice({
         },
 
     },
-    extraReducers: {
-        [fetchContacts.pending](state) {
+    extraReducers: builder => {
+        builder.addCase(fetchContacts.pending, (state) => {
             state.isLoading = true;
-        },
-        [fetchContacts.fulfilled](state, action) {
-            state.isLoading = false;
-            state.error = null;
-            state.contacts = action.payload;
-        },
-        [fetchContacts.rejected](state, action) {
-            state.isLoading = false;
-            state.error = action.payload;
-        }
+        })
+            .addCase(fetchContacts.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.contacts = action.payload;
+            })
+            .addCase(fetchContacts.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
+        // [fetchContacts.pending](state) {
+        //     state.isLoading = true;
+        // },
+        // [fetchContacts.fulfilled](state, action) {
+        //     state.isLoading = false;
+        //     state.error = null;
+        //     state.contacts = action.payload;
+        // },
+        // [fetchContacts.rejected](state, action) {
+        //     state.isLoading = false;
+        //     state.error = action.payload;
+        // }
     }
 });
 
